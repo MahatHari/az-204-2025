@@ -16,7 +16,7 @@ Console.ReadLine();
 static async Task ProcessAsync()
 {
     // uncomment and add connection string, avaoiding github push protection
-    //string storageConnectionString = 
+    string storageConnectionString = "";
     // create a client that can authenticate with connection string;
     BlobServiceClient serviceClient = new BlobServiceClient(storageConnectionString);
 
