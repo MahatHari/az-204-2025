@@ -131,9 +131,47 @@ namespace azblob
             return client;
         }
 
+        private static async Task ReadContainerPropertiesAsync(BlobContainerClient container){
+        
+        try{
+            // Fetch container properties and write out their values
+            var properties=container.GetPropertiesAsync();
+            Console.WriteLine($"Properties for contaienr {container.Uri}")
+            Console.WriteLine($"Public access level: {properties.Value.PublicAccess}");
+            Console.WriteLine($"Last modified time in UTC: {properties.Value.LastModified}");
+             
+        }catch(RequestFailedException e){
+        }
+            Console.WriteLine($"HTTP error code {e.Status}: {e.ErrorCode}");
+            Console.WriteLine(e.Message);
+            Console.ReadLine();
+
+        }
+        public static async Task AddContainerMetadataAsync(BlobContainerClient container)
+        {
+            try
+            {
+                IDictionary<string, string> metadata =
+                new Dictionary<string, string>();
+
+                // Add some metadata to the container.
+                metadata.Add("docType", "textDocuments");
+                metadata.Add("category", "guidance");
+
+                // Set the container's metadata.
+                await container.SetMetadataAsync(metadata);
+            }
+            catch (RequestFailedException e)
+            {
+                Console.WriteLine($"HTTP error code {e.Status}: {e.ErrorCode}");
+                Console.WriteLine(e.Message);
+                Console.ReadLine();
+            }
+        }
+
         public static void Main()
         {
-            string accountName = "";
+                string accountName = "";
             string containerName = "";
             string blobName = "";
 
