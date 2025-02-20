@@ -1,4 +1,4 @@
-# Prepare Environment
+# Creating Azure Container App using Azure CLI
 
 # install the azure container apps extensions for the cli
 

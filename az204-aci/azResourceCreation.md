@@ -1,4 +1,4 @@
-# Sign in to azure and create resource group
+# Process of creating Azure Container Instances using CLI
 
 ## create resource group
 
